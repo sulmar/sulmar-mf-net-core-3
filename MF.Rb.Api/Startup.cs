@@ -30,6 +30,7 @@ namespace MF.Rb.Api
             // Rejestracja us³ug
             services.AddSingleton<IReportRepository, FakeReportRepository>();
             services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
+            services.AddSingleton<IUserRepository, FakeUserRepository>();
 
             services.AddControllers();
         }
