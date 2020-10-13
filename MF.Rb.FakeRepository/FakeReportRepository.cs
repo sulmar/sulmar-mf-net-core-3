@@ -71,5 +71,29 @@ namespace MF.Rb.FakeRepository
                 .Where(r => r.CreateDate <= to)
                 .ToList();
         }
+
+        public void Add(Report report)
+        {
+            int lastId = reports.Max(r => r.Id);
+            report.Id = ++lastId;
+
+            reports.Add(report);
+        }
+        public Report GetById(int reportId)
+        {
+            return reports.SingleOrDefault(r => r.Id == reportId);
+        }
+
+        public void Update(Report report)
+        {
+            Remove(report.Id);
+            Add(report);
+        }
+
+        public void Remove(int reportId)
+        {
+            Report report = GetById(reportId);
+            reports.Remove(report);
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace MF.Rb.Domain.Repository
     {
         IEnumerable<Report> Get(int dysponentId);
         IEnumerable<Report> Get(DateTime from, DateTime to);
+        Report GetById(int reportId);
+        void Add(Report report);
 
     }
 }

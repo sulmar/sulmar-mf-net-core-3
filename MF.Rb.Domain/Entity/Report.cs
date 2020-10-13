@@ -12,7 +12,7 @@ namespace MF.Rb.Domain
 
         //  public Report() { }
 
-        private Report()
+        public Report()
         {
             CreateDate = DateTime.Now;
 

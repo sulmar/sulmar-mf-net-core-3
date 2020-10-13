@@ -11,7 +11,7 @@ namespace MF.Rb.Domain
         public DateTime? ActiveTo { get; set; }     // Nullable typ? - Nullable<T>
 
 
-        private Customer()
+        public Customer()
         {
             ActiveFrom = DateTime.Parse("2020-10-12");
         }

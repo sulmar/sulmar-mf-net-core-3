@@ -12,6 +12,9 @@
             this.Rozdzial = rozdzial;
             this.Paragraf = paragraf;
         }
+
+
+        
     }
 
 }

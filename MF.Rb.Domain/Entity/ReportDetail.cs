@@ -6,6 +6,11 @@
         public decimal Plan { get; set; }
         public decimal Naleznosci { get; set; }
 
+        public ReportDetail()
+        {
+
+        }
+
         public ReportDetail(Klasyfikacja klasyfikacja, decimal plan, decimal naleznosci)
         {
             this.Klasyfikacja = klasyfikacja;

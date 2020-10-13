@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MF.Rb.Domain\MF.Rb.Domain.csproj" />
+    <ProjectReference Include="..\MF.Rb.FakeRepository\MF.Rb.FakeRepository.csproj" />
+  </ItemGroup>
+
+
+</Project>
