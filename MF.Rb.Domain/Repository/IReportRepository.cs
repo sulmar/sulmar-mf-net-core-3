@@ -11,6 +11,8 @@ namespace MF.Rb.Domain.Repository
         IEnumerable<Report> Get(DateTime from, DateTime to);
         Report GetById(int reportId);
         void Add(Report report);
+        void Update(Report report);
+        void Remove(int reportId);
 
     }
 }
