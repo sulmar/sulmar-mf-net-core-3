@@ -1,5 +1,9 @@
-﻿using System;
+﻿using MF.Rb.Domain;
+using MF.Rb.Domain.Repository;
+using MF.Rb.FakeRepository;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Xml.Schema;
 
@@ -18,8 +22,26 @@ namespace MF.Fundamentals.ConsoleClient
             // CollectionTest();
             // GenericTypesTest();
 
-            InterfacesTest();
+            // InterfacesTest();
 
+            // ConstructorTest();
+
+            IReportRepository reportRepository = new FakeReportRepository();
+
+            IEnumerable<Report> reports = reportRepository.Get(1);
+
+            foreach (Report report in reports)
+            {
+                Console.WriteLine(report.Dysponent.Name);
+            }
+
+        }
+
+        private static void ConstructorTest()
+        {
+            Customer customer = new Customer("John", "Smith");
+            customer.FirstName = "Ann";
+            // customer.LastName = "Smith";
         }
 
         private static void InterfacesTest()
@@ -110,7 +132,7 @@ namespace MF.Fundamentals.ConsoleClient
 
         private static void ClassTest()
         {
-            Customer customer = new Customer();
+            Customer customer = new Customer("John", "Smith");
             customer.Id = 1;
             customer.FirstName = "John";
             customer.LastName = "Smith";

@@ -74,6 +74,31 @@ namespace MF.Fundamentals.ConsoleClient
             }
         }
 
+
+        // Konstruktor - wywoływany przy tworzenia instacji obiektu
+        // służy do ustawiania wartości domyślnych i definowania wymaganych parametrów
+
+        private Customer()
+        {
+            CreatedDate = DateTime.Now;
+            IsRemoved = false;
+        }
+
+        public Customer(string firstName, string lastName)
+            : this(lastName)                                // this - wywołuje inny konstruktor na tym samym poziomie
+        {
+            this.FirstName = firstName;
+        }
+
+        public Customer(string lastName)
+            : this()
+        {
+            this.LastName = lastName;
+        }
+
+
+      
+
         public void Print()
         {
             Console.WriteLine($"{Id} {FirstName} {LastName}");

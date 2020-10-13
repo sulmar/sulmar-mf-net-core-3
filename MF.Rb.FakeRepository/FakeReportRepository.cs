@@ -11,11 +11,36 @@ namespace MF.Rb.FakeRepository
     {
         private Collection<Report> reports;
 
+
+        // snippet: ctor
+        public FakeReportRepository()
+        {
+            reports = new Collection<Report>();
+
+            Customer dysponent = new Customer(1, "FirmaA", "A", "65675767434");
+            Report report1 = new Report(dysponent);
+
+            Klasyfikacja klasyfikacja1 = new Klasyfikacja("010", "01095", "0750");
+            Klasyfikacja klasyfikacja2 = new Klasyfikacja("010", "01095", "2010");
+            Klasyfikacja klasyfikacja3 = new Klasyfikacja("010", "01095", "3865");
+
+            ReportDetail reportDetail1 = new ReportDetail(klasyfikacja1, 0, 427);
+            ReportDetail reportDetail2 = new ReportDetail(klasyfikacja2, 30, 999);
+            ReportDetail reportDetail3 = new ReportDetail(klasyfikacja3, 670, 1007);
+
+            report1.Details.Add(reportDetail1);
+            report1.Details.Add(reportDetail2);
+            report1.Details.Add(reportDetail3);
+
+            reports.Add(report1);
+
+        }
+
         public IEnumerable<Report> Get(int dysponentId)
         {
             // => wyrażenie lambda
             return reports
-                .Where(p => p.Dysponent.Id == dysponentId)
+                .Where(report => report.Dysponent.Id == dysponentId)
                 .ToList();
 
             // Linq - korzysta z wyrażeń lambda i tłumaczy na inny język:
