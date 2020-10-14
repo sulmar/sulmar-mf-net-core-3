@@ -1,16 +1,13 @@
 ﻿using MF.Rb.Domain.Entity;
 using MF.Rb.Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor.Internal;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace MF.Rb.Api.Controllers
+namespace MF.Rb.Api.Controllers.V1
 {
-
-    [Route("api/{controller}")]
+    [Route("api/v1/{controller}")]
+   
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository userRepository;
@@ -20,7 +17,16 @@ namespace MF.Rb.Api.Controllers
             this.userRepository = userRepository;
         }
 
-        // GET api/users
+        // [Produces("application/json", "application/xml")]   // Zawęża obsługiwane formaty
+
+        // GET api/v1/users
+        //[HttpGet("~/api/v1/users")]
+        //[HttpGet("~/api/v1/uzytkownicy")]
+        
+      
+
+
+        // GET api/v1/users
         [HttpGet]
         public ActionResult Get()
         {
@@ -36,7 +42,7 @@ namespace MF.Rb.Api.Controllers
 
 
         [FormatFilter]      // pobiera z adresu url format i przekazuje go do nagłówka jako Accept
-        [HttpGet("{id}.{format?}", Name = "GetUserById")]
+        [HttpGet("{id}.{format?}", Name ="GetUserByIdV1")]            
         public ActionResult GetById(int id)
         {
             // Jeśli zasób (resource) nie zostanie odnaleziony
@@ -44,7 +50,7 @@ namespace MF.Rb.Api.Controllers
 
             User user = userRepository.Get(id);
 
-            if (user == null)
+            if (user==null)
             {
                 return NotFound(); // Zwraca 404 NotFound
             }
@@ -62,7 +68,7 @@ namespace MF.Rb.Api.Controllers
             if (user == null)
             {
 
-
+                
                 return NotFound(); // Zwraca 404 NotFound
             }
 
@@ -83,9 +89,7 @@ namespace MF.Rb.Api.Controllers
             // w nagłówku znajdą się:
             // location: api/users/10
             // w treści odpowiedzi: użytkownik w formacie json
-            return CreatedAtRoute("GetUserById", new { Id = user.Id }, user);
+            return CreatedAtRoute("GetUserByIdV1", new { Id = user.Id }, user);
         }
-
-
     }
 }

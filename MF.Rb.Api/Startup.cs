@@ -57,10 +57,19 @@ namespace MF.Rb.Api
                 options.Level = System.IO.Compression.CompressionLevel.Optimal;
             });
 
+
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = System.IO.Compression.CompressionLevel.Optimal;
+            });
+
+            // Brotli - kompresor
+
             services.AddResponseCompression(options =>
             {
                 options.EnableForHttps = true;
-                options.Providers.Add<GzipCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();   // Accept-Encoding: gzip
+                options.Providers.Add<BrotliCompressionProvider>();  // Accept-Encoding: br
             });
 
         }
@@ -76,7 +85,7 @@ namespace MF.Rb.Api
             app.UseHttpsRedirection();
 
             // W³¹czenie kompresji odpowiedzi
-           // app.UseResponseCompression();
+            app.UseResponseCompression();
 
             app.UseRouting();
 
