@@ -5,6 +5,7 @@ using System.Text;
 namespace MF.Fundamentals.ConsoleClient
 {
 
+    // Klasa abstrakcyjna - nie można utworzyć bezpośrednio instancji tej klasy lecz tylko klas, które dziedziczą po tej klasie
     public abstract class Base
     {
         public int Id { get; set; }

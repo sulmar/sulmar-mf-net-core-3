@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.2.0" />
+    <PackageReference Include="WebApiContrib.Core.Formatter.Csv" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MF.Rb.Domain\MF.Rb.Domain.csproj" />
     <ProjectReference Include="..\MF.Rb.FakeRepository\MF.Rb.FakeRepository.csproj" />
   </ItemGroup>
