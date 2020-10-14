@@ -68,7 +68,7 @@ namespace MF.Rb.Api
             services.AddResponseCompression(options =>
             {
                 options.EnableForHttps = true;
-                options.Providers.Add<GzipCompressionProvider>();   // Accept-Encoding: gzip
+             //   options.Providers.Add<GzipCompressionProvider>();   // Accept-Encoding: gzip
                 options.Providers.Add<BrotliCompressionProvider>();  // Accept-Encoding: br
             });
 

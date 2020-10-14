@@ -1,7 +1,10 @@
 ﻿using MF.Rb.Domain.Entity;
 using MF.Rb.Domain.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor.Internal;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace MF.Rb.Api.Controllers
 {
-
     [Route("api/{controller}")]
     public class UsersController : ControllerBase
     {
@@ -24,6 +26,18 @@ namespace MF.Rb.Api.Controllers
         [HttpGet]
         public ActionResult Get()
         {
+
+            // Logowanie
+
+            HttpRequest request = this.HttpContext.Request;
+
+            // Pobieranie wartości z nagłówka requestu HTTP
+            if (this.HttpContext.Request.Headers.TryGetValue("api-version", out StringValues values))
+            {
+                string version = values.First();
+            }
+
+
             IEnumerable<User> users = userRepository.Get();
 
             users = users.OrderBy(u => u.LastName).ToList();

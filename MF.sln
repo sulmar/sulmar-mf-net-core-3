@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MF.Rb.Domain", "MF.Rb.Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MF.Rb.FakeRepository", "MF.Rb.FakeRepository\MF.Rb.FakeRepository.csproj", "{1E08CFBB-CA0C-4EEC-9CD7-39AB3D6A1812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MF.Rb.Api", "MF.Rb.Api\MF.Rb.Api.csproj", "{0F161C49-A887-4BEF-83FF-7E690C140442}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MF.Rb.Api", "MF.Rb.Api\MF.Rb.Api.csproj", "{0F161C49-A887-4BEF-83FF-7E690C140442}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MF.Rb.RawApi", "MF.Rb.RawApi\MF.Rb.RawApi.csproj", "{0AA15913-2128-4BFE-9C9A-F4EBD0CE6771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0F161C49-A887-4BEF-83FF-7E690C140442}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F161C49-A887-4BEF-83FF-7E690C140442}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F161C49-A887-4BEF-83FF-7E690C140442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA15913-2128-4BFE-9C9A-F4EBD0CE6771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA15913-2128-4BFE-9C9A-F4EBD0CE6771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA15913-2128-4BFE-9C9A-F4EBD0CE6771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA15913-2128-4BFE-9C9A-F4EBD0CE6771}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
