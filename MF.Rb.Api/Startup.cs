@@ -6,6 +6,7 @@ using MF.Rb.Domain.Repository;
 using MF.Rb.FakeRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -54,6 +55,8 @@ namespace MF.Rb.Api
             // Rejestracja opcji IOptions<T> i pobranie ustawieñ z pliku konfiguracyjnego
             services.Configure<FakeUserRepositoryOptions>(Configuration.GetSection("FakeUserRepositoryOptions"));
 
+            // .NET Core 2
+            // services.AddMvc()
 
             // Dodaj pakiet WebApiContrib.Core.Formatter.Csv
             // https://github.com/WebApiContrib/WebAPIContrib.Core/tree/master/src/WebApiContrib.Core.Formatter.Csv
@@ -105,8 +108,12 @@ namespace MF.Rb.Api
 
             app.UseAuthorization();
 
+            // .NET Core 2
+            // app.UseMvc();
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.Map("/dashboard", context => context.Response.WriteAsync("Hello Dashboard"));
                 endpoints.MapControllers();
             });
         }
