@@ -24,6 +24,17 @@ namespace MF.Rb.Api.Controllers
 
         // GET api/users
         [HttpGet]
+        public async Task<ActionResult> GetAsync()
+        {
+            IEnumerable<User> users = await userRepository.GetAsync();
+
+            return Ok(users);
+        }
+
+        /*
+
+        // GET api/users
+        [HttpGet]
         public ActionResult Get()
         {
 
@@ -44,6 +55,8 @@ namespace MF.Rb.Api.Controllers
 
             return Ok(users);
         }
+
+        */
 
         // Route
         // GET api/users/{id}

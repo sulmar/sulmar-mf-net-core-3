@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Xml.Schema;
 using MF.Fundamentals.Extensions;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace MF.Fundamentals.ConsoleClient
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Hello .NET Core!");
 
@@ -22,16 +24,125 @@ namespace MF.Fundamentals.ConsoleClient
             // ArrayTest();
             // CollectionTest();
             // GenericTypesTest();
-
             // InterfacesTest();
-
             // ConstructorTest();
-
             // RepositoryTest();
+            // ExtensionMethodTest();
 
 
-            ExtensionMethodTest();
 
+            // Wyświetlenie bieżącego identyfikatora wątku
+            Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId}");
+
+            Sender sender = new Sender();
+
+            // Synchroniczne wywołanie metody
+            // sender.Send("Hello World!");
+
+            // Asynchroniczne wywołanie metody
+            // Task task = new Task(() => sender.Send("Hello World!"));
+            // ...
+            // task.Start();
+
+            //  Task task = Task.Run(() => sender.Send("Hello World!"));
+
+
+            // Synchronicznie
+
+            //decimal cost = sender.Calculate("Hello !");
+
+            //if (cost < 10)
+            //{
+            //    sender.Send("Hello World!");
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"Zbyt drogo {cost}");
+            //}
+
+
+            // Asynchronicznie za pomocą Task i ContitueWith
+
+            /*
+            Task<decimal> task = Task.Run(()=>sender.Calculate("Hello World!"));
+
+            // Jak zakończysz pierwsze zadanie, to wykonaj kolejne zadanie (ContinueWith)
+            task.ContinueWith(t =>
+            {
+                if (t.Result < 10)
+                {
+                    Task.Run(()=>sender.Send("Hello !"));
+                }
+                else
+                {
+                    Console.WriteLine($"Zbyt drogo {t.Result}");
+                }
+            });
+
+            */
+
+            /*
+           
+
+            */
+
+            SendMessageAsync(sender);
+
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+
+        }
+
+
+
+        // Metoda synchroniczna 
+        private static void SendMessage(Sender sender)
+        {
+            decimal cost = sender.Calculate("Hello!");
+
+            if (cost < 10)
+            {
+                sender.Send("Hello!");
+            }
+            else
+            {
+                Console.WriteLine($"Zbyt drogo {cost}");
+            }
+        }
+
+        // Metoda asynchroniczna z użyciem async-await
+        private static async Task SendMessageAsync(Sender sender)
+        {
+            // await - oczekiwanie na zakończenie Task i pobiera wartość typu T ze zmiennej Task.Result
+            decimal cost = await sender.CalculateAsync("Hello!");
+
+            if (cost < 10)
+            {
+                await sender.SendAsync("Hello World!");
+            }
+            else
+            {
+                Console.WriteLine($"Zbyt drogo {cost}");
+            }
+        }
+
+        // Metoda asynchroniczna z użyciem ContinueWith
+        private static void SendMessageWithContinueWith(Sender sender)
+        {
+            Task<decimal> task = sender.CalculateAsync("Hello World!");
+
+            // Jak zakończysz pierwsze zadanie, to wykonaj kolejne zadanie (ContinueWith)
+            task.ContinueWith(t =>
+            {
+                if (t.Result < 10)
+                {
+                    sender.SendAsync("Hello !");
+                }
+                else
+                {
+                    Console.WriteLine($"Zbyt drogo {t.Result}");
+                }
+            });
         }
 
         private static void ExtensionMethodTest()

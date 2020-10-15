@@ -3,6 +3,7 @@ using MF.Rb.Domain.Repository;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 
 namespace MF.Rb.FakeRepository
 {
@@ -18,6 +19,8 @@ namespace MF.Rb.FakeRepository
 
         public IEnumerable<TEntity> Get()
         {
+            Thread.Sleep(10000);
+
             return entities;
         }
 

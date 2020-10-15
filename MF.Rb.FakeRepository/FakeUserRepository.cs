@@ -1,8 +1,10 @@
 ﻿using MF.Rb.Domain.Entity;
 using MF.Rb.Domain.Repository;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MF.Rb.FakeRepository
 {
@@ -30,6 +32,11 @@ namespace MF.Rb.FakeRepository
 
             // dodanie pbiektu do zbioru
             entities.Add(user);
+        }
+
+        public Task<IEnumerable<User>> GetAsync()
+        {
+            return Task.Run(() => Get());
         }
     }
 }
