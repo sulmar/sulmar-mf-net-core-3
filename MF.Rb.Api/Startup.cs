@@ -38,6 +38,9 @@ namespace MF.Rb.Api
             // Rejestracja za pomoc¹ metody rozszerzaj¹cej
             services.AddRbServices();
 
+
+            string connectionString = Configuration["connectionString"];
+
             var csvOptions = new CsvFormatterOptions
             {
                 UseSingleLineHeaderInCsv = true,
