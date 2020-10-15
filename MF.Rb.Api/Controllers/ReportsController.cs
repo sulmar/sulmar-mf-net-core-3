@@ -86,7 +86,7 @@ namespace MF.Rb.Api.Controllers
             // location: http://localhost:5000/api/reports/{id}
             // body: {json}
 
-           
+           // Przykład użycia typu anonimowego
             return CreatedAtRoute("GetById", new { reportId = report.Id }, report );
 
         }

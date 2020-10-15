@@ -25,8 +25,8 @@ namespace MF.Fundamentals.ConsoleClient
             return Task.Run(() => Send(message));
         }
 
-
-        // Metoda synchroniczna
+       
+            // Metoda synchroniczna
         public decimal Calculate(string message)
         {
             Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId} Calculating... {message}");
@@ -45,5 +45,7 @@ namespace MF.Fundamentals.ConsoleClient
         {
             return Task.Run(() => Calculate(message));
         }
+
+      
     }
 }

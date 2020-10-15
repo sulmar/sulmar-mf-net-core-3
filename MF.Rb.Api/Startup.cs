@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using WebApiContrib.Core.Formatter.Csv;
 
 namespace MF.Rb.Api
@@ -43,6 +44,13 @@ namespace MF.Rb.Api
                 CsvDelimiter = ",",
                 IncludeExcelDelimiterHeader = true
             };
+
+          //  services.Configure<CsvFormatterOptions>(Configuration.GetSection("CsvOptions"));
+
+
+            // Rejestracja opcji IOptions<T> i pobranie ustawieñ z pliku konfiguracyjnego
+            services.Configure<FakeUserRepositoryOptions>(Configuration.GetSection("FakeUserRepositoryOptions"));
+
 
             // Dodaj pakiet WebApiContrib.Core.Formatter.Csv
             // https://github.com/WebApiContrib/WebAPIContrib.Core/tree/master/src/WebApiContrib.Core.Formatter.Csv

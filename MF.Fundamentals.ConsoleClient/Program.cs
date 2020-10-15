@@ -9,9 +9,28 @@ using System.Xml.Schema;
 using MF.Fundamentals.Extensions;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MF.Fundamentals.ConsoleClient
 {
+    public class CustomerInfo
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    public class CustomerInfo2
+    {
+        public string LastName { get; set; }
+        public decimal Salary { get; set; }
+    }
+
+    //public class Anounmouse_5034534573475934757349534959346534
+    //{
+    //    public string Imie { get; set; }
+    //    public string Nazwisko { get; set; }
+    //}
+
     class Program
     {
         static async Task Main(string[] args)
@@ -30,11 +49,13 @@ namespace MF.Fundamentals.ConsoleClient
             // ExtensionMethodTest();
 
 
+             // AnonymousTypesTest();
+
 
             // Wyświetlenie bieżącego identyfikatora wątku
-            Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId}");
+            // Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId}");
 
-            Sender sender = new Sender();
+            // Sender sender = new Sender();
 
             // Synchroniczne wywołanie metody
             // sender.Send("Hello World!");
@@ -86,11 +107,38 @@ namespace MF.Fundamentals.ConsoleClient
 
             */
 
-            SendMessageAsync(sender);
+            // SendMessageAsync(sender);
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
 
+        }
+
+        // Typy anonimowe
+        private static void AnonymousTypesTest()
+        {
+            Customer customer = new Customer("John", "Smith");
+
+            // SQL: SELECT * FROM Customers
+
+            // SQL: SELECT FirstName, LastName FROM Customers
+
+            //CustomerInfo customerInfo = new CustomerInfo();
+            //customerInfo.FirstName = customer.FirstName;
+            //customerInfo.LastName = customer.LastName;
+
+
+            // Typ anonimowy
+            // Klasa jest generowana automatycznie przez kompilator na podstawie przypisanych pól
+
+            // SQL: SELECT FirstName AS Imie, LastName AS Nazwisko, Salary = 1000 FROM Customers
+            var customerInfo = new { Imie = customer.FirstName, Nazwisko = customer.LastName, Salary = 1000m };
+
+            Console.WriteLine(customerInfo);
+
+            // var - określa automatycznie typ na podstawie przypisania
+            // nie można później zmienić tego typu
+            float x = 10.0f;
         }
 
 

@@ -29,7 +29,15 @@ namespace MF.Rb.Api.Controllers
             IEnumerable<User> users = await userRepository.GetAsync();
 
             return Ok(users);
+
+            //var employees = users.Select(e => new { e.FirstName, e.LastName });
+
+            //return Ok(employees);
         }
+
+        // GET api/users?fieldset=FirstName,LastName  -> SELECT FirstName, LastName FROM Customers
+
+
 
         /*
 
