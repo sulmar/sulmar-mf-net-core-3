@@ -30,9 +30,12 @@ namespace MF.Rb.Api
         public void ConfigureServices(IServiceCollection services)
         {
             // Rejestracja us³ug
-            services.AddSingleton<IReportRepository, FakeReportRepository>();
-            services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
-            services.AddSingleton<IUserRepository, FakeUserRepository>();
+            //services.AddSingleton<IReportRepository, FakeReportRepository>();
+            //services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
+            //services.AddSingleton<IUserRepository, FakeUserRepository>();
+
+            // Rejestracja za pomoc¹ metody rozszerzaj¹cej
+            services.AddRbServices();
 
             var csvOptions = new CsvFormatterOptions
             {

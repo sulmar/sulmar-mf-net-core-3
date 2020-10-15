@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Xml.Schema;
+using MF.Fundamentals.Extensions;
 
 namespace MF.Fundamentals.ConsoleClient
 {
@@ -26,6 +27,62 @@ namespace MF.Fundamentals.ConsoleClient
 
             // ConstructorTest();
 
+            // RepositoryTest();
+
+
+            ExtensionMethodTest();
+
+        }
+
+        private static void ExtensionMethodTest()
+        {
+            DateTime date = DateTime.Today;
+
+            if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
+            {
+                Console.WriteLine("Weekend!");
+            }
+            else
+            {
+                Console.WriteLine("Dzień roboczy");
+            }
+
+
+            // Wywołanie metody statycznej
+            if (DateTimeHelper.IsHoliday(date))
+            {
+                Console.WriteLine("Weekend!");
+            }
+            else
+            {
+                Console.WriteLine("Dzień roboczy");
+            }
+
+            // Wywołanie metody rozszerzającej
+
+            if (date.IsHoliday())
+            {
+                Console.WriteLine("Weekend!");
+            }
+            else
+            {
+                Console.WriteLine("Dzień roboczy");
+            }
+
+
+            DateTime dueDate = date.AddWorkingDays(5);
+
+            // Rozszerzenie typu string
+
+            string message = "Hello Wor    ld!";
+
+            message = message.Normalization();
+
+            Console.WriteLine(message);
+        }
+
+        private static void RepositoryTest()
+        {
             IReportRepository reportRepository = new FakeReportRepository();
 
             IEnumerable<Report> reports = reportRepository.Get(1);
@@ -34,7 +91,6 @@ namespace MF.Fundamentals.ConsoleClient
             {
                 Console.WriteLine(report.Dysponent.Name);
             }
-
         }
 
         private static void ConstructorTest()
