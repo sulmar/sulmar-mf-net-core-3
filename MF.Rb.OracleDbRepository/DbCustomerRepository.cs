@@ -92,7 +92,7 @@ namespace MF.Rb.OracleDbRepository
             Customer customer = new Customer
             {
                 ActiveTo = reader.GetNullableDateTime("From"),
-
+                Name = reader.GetNullableString("Name"),
             };
 
             return customer;
